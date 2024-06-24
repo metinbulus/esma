@@ -1,0 +1,8 @@
+importFrom("ggplot2", "ggplot", "geom_line", "aes",
+"coord_cartesian", "scale_y_reverse", "geom_polygon",
+"geom_point", "labs",  "theme_bw", "theme_grey", "theme_test", "theme_dark",
+"theme", "element_text")
+
+importFrom("ggtext", "element_markdown")
+
+export(databahn)

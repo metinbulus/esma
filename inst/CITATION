@@ -1,0 +1,12 @@
+citHeader("To cite esma in publications use:")
+bibentry(bibtype = "Manual",
+         title        = "{esma}: Effect Sizes for Meta-Analysis",
+         author       = as.person("Metin Bulus"),
+         note         = "R package version 0.0.0.9999",
+         year         = "2024",
+         url = "https://github.com/metinbulus/esma",
+         textVersion  =
+           paste("Bulus, M. (2024).",
+                 "esma: Effect Sizes for Meta-Analysis",
+                 "R package version 0.1.0.",
+                 "https://github.com/metinbulus/esma"))

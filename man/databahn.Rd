@@ -11,6 +11,7 @@ Creates alternative funnel plots with ggplot2 themes, but call them databahn plo
 \usage{
 databahn(yi,
          sei, 
+         tau2 = 0, 
          title = NULL, 
          xlab = "Mean Difference",
          ylab = "Standard Error",
@@ -19,12 +20,13 @@ databahn(yi,
          point.color = "#3c556e",
          point.shape = 21,
          point.size = c("weights", "se", "none"),
-         theme = c("bw", "test", "dark")) 
+         theme = c("bw", "test", "grey", "gray", "dark")) 
 }
 
 \arguments{
   \item{yi}{Effect sizes}
   \item{sei}{Standard errors}
+  \item{tau2}{Estimated amount of total heterogeneity}
   \item{title}{Plot title}
   \item{xlab}{x-axis label}
   \item{ylab}{y-axis label}

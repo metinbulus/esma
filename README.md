@@ -1,3 +1,2 @@
 # esma
 Effect Sizes for Meta-Analysis
-Under development...

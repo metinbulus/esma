@@ -1,0 +1,14 @@
+Package: esma
+Version: 0.0.0.9999
+Type: Package
+Title: Effect Sizes for Meta-Analysis
+Authors@R: c(person("Metin", "Bulus", email = "bulusmetin@gmail.com", role = c("aut", "cre")))
+Date: 2024-06-24
+Description: Functions to calculate effect sizes for meta-analysis. 
+Suggests: knitr, rmarkdown, ggplot2
+VignetteBuilder: knitr
+ByteCompile: yes
+LazyLoad: yes
+LazyData: yes
+License: GPL (>= 3)
+Maintainer: Metin Bulus <bulusmetin@gmail.com>

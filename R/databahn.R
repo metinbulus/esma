@@ -1,5 +1,5 @@
-# databahn (name suggested by Eren Can Ayberk)
 databahn <- function(yi, sei, 
+                     tau2 = 0, 
                      title = NULL, 
                      xlab = "Mean Difference",
                      ylab = "Standard Error",
@@ -11,20 +11,21 @@ databahn <- function(yi, sei,
                      theme = c("bw", "test", "grey", "gray", "dark")) {
   
   point.size <- match.arg(point.size)
-  if(point.size == "weights") {
-    point.size.values <- 1/sei^2
-  } else if(point.size == "se") {
-    point.size.values <- sei
-  } else {
-    point.size.values <- rep(1, length(yi))
-  }
-        
   ci <- match.arg(ci)
   theme <- match.arg(theme)
   
   k <- length(yi)
-  vi <- 1 / sei^2
-  mu <- sum(yi * vi) / sum(vi)
+  
+  vi <- 1 / (sei^2 + tau2)
+  beta <- sum(yi * vi) / sum(vi)
+  
+  if(point.size == "weights") {
+    point.size.values <- vi
+  } else if(point.size == "se") {
+    point.size.values <- sei
+  } else {
+    point.size.values <- rep(1, k)
+  }
   
   se_seq <- seq(0, max(sei), 0.001) # standard error sequence to draw confidence regions
   
@@ -44,14 +45,14 @@ databahn <- function(yi, sei,
   }
     
   # vectors that define confidence regions 
-  ll99 = mu - (cv_99*se_seq)
-  ul99 = mu + (cv_99*se_seq)
+  ll99 = beta - (cv_99*se_seq)
+  ul99 = beta + (cv_99*se_seq)
   
-  ll95 = mu - (cv_95*se_seq)
-  ul95 = mu + (cv_95*se_seq)
+  ll95 = beta - (cv_95*se_seq)
+  ul95 = beta + (cv_95*se_seq)
   
-  ll90 = mu - (cv_90*se_seq)
-  ul90 = mu + (cv_90*se_seq)
+  ll90 = beta - (cv_90*se_seq)
+  ul90 = beta + (cv_90*se_seq)
   
   # a data frame of vectors that define confidence regions
   ci_data <- data.frame(se_seq, ll99, ul99, ll95, ul95, ll90, ul90)
@@ -97,7 +98,7 @@ databahn <- function(yi, sei,
     geom_polygon(data = shaded_region_data_95, aes(x = x, y = y), fill = "#b7c7d8", alpha = 0.2) +
     geom_polygon(data = shaded_region_data_99, aes(x = x, y = y), fill = "#dde5ed", alpha = 0.2) +
     # the vertical line that passes through the average effect (or estimated)
-    geom_line(aes(y = se_seq, x = mu), linetype = 'solid', alpha = 0.5, color = "white", lwd = 2, data = ci_data) +
+    geom_line(aes(y = se_seq, x = beta), linetype = 'solid', alpha = 0.5, color = "white", lwd = 2, data = ci_data) +
     # plot standard errors proportional to their size
     # 'size = 1/sei^2' to highlight more informative studies
     geom_point(aes(size = point.size.values), fill = point.fill, color = point.color, shape = point.shape) + 

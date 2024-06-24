@@ -8,7 +8,7 @@ databahn <- function(yi, sei,
                      point.color = "#3c556e",
                      point.shape = 21,
                      point.size = c("weights", "se", "none"),
-                     theme = c("bw", "test", "dark")) {
+                     theme = c("bw", "test", "grey", "gray", "dark")) {
   
   point.size <- match.arg(point.size)
   if(point.size == "weights") {
@@ -110,9 +110,11 @@ databahn <- function(yi, sei,
   # apply themes 
   if (theme == "bw") {
     databahn_plot <- databahn_plot + theme_bw()
-  } else if (theme == "test") {
+  } else if(theme == "test") {
     databahn_plot <- databahn_plot + theme_test()
-  } else if (theme == "dark") {
+  } else if(theme == "grey" | theme == "gray") {
+    databahn_plot <- databahn_plot + theme_grey() 
+  } else if(theme == "dark") {
     databahn_plot <- databahn_plot + theme_dark()
   }
   

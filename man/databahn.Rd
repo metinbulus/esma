@@ -20,6 +20,7 @@ databahn(yi,
          point.color = "#3c556e",
          point.shape = 21,
          point.size = c("weights", "se", "none"),
+         base.size = 12, 
          theme = c("bw", "test", "grey", "gray", "dark")) 
 }
 
@@ -35,7 +36,8 @@ databahn(yi,
   \item{point.color}{Border color for points}
   \item{point.shape}{Shape of the points}
   \item{point.size}{Size of the points: c("weights", "se", "none")}
-  \item{theme}{A ggplot theme: c("bw", "test", "dark")}
+  \item{base.size}{Base font size}
+  \item{theme}{A ggplot theme: c("bw", "test", "grey", "gray", "dark")}
 }
 
 \examples{

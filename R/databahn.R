@@ -98,7 +98,7 @@ databahn <- function(yi, sei,
     geom_polygon(data = shaded_region_data_95, aes(x = x, y = y), fill = "#b7c7d8", alpha = 0.2) +
     geom_polygon(data = shaded_region_data_99, aes(x = x, y = y), fill = "#dde5ed", alpha = 0.2) +
     # the vertical line that passes through the average effect (or estimated)
-    geom_line(aes(y = se_seq, x = beta), linetype = 'solid', alpha = 0.5, color = "white", lwd = 2, data = ci_data) +
+    geom_line(aes(y = se_seq[-c(1,2)], x = beta), linetype = 'solid', alpha = 0.5, color = "white", lwd = 2, data = ci_data) +
     # plot standard errors proportional to their size
     # 'size = 1/sei^2' to highlight more informative studies
     geom_point(aes(size = point.size.values), fill = point.fill, color = point.color, shape = point.shape) + 
